@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./output.css" />
+    <title>Vite App</title>
+  </head>
+  <body class="bg-slate-700 h-screen flex flex-col items-center justify-center">
+    <div
+      class="gap-2 border-solid border-2 rounded-md p-2 grid grid-cols-3 text-white"
+      id="main"
+    >
+      <label>Input flow rate is</label>
+      <select
+        class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+        id="rate-select"
+      >
+        <option value="1">Volume flow</option>
+        <option value="2">Mass Flow</option>
+      </select>
+      <br />
+      <div id="volumeId" class="contents">
+        <label>Volume Flow</label>
+        <input
+          type="number"
+          class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+          id="input-volume"
+          value="0"
+        />
+        <select
+          class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+          id="unit-volume"
+        >
+          <option value="m3/s">m3/s</option>
+          <option value="m3/h">m3/h</option>
+          <option value="ft3/s">ft3/s</option>
+          <option value="ft3/day">ft3/day</option>
+          <option value="ft3/h">ft3/h</option>
+        </select>
+      </div>
+      <div id="densityId" class="contents hidden">
+        <label>Density</label>
+        <input
+          type="number"
+          class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+          id="input-density"
+          value="0"
+        />
+        <select
+          class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+          id="unit-density"
+        >
+          <option value="kg/m3">kg/m3</option>
+          <option value="g/cm3">g/cm3</option>
+          <option value="g/ml">g/ml</option>
+          <option value="g/L">g/L</option>
+        </select>
+      </div>
+      <div id="massId" class="contents hidden">
+        <label>Mass Flow</label>
+        <input
+          type="number"
+          class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+          id="input-mass"
+          value="0"
+        />
+        <select
+          class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+          id="unit-mass"
+        >
+          <option value="lb/day">lb/day</option>
+          <option value="lb/min">lb/min</option>
+        </select>
+      </div>
+      <label>Pressure Drop</label>
+      <input
+        class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+        id="input-pressure"
+      />
+      <select
+        class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+        id="unit-pressure"
+        value="0"
+        type="number"
+      >
+        <option value="Pa">Pascal</option>
+        <option value="bar">bar</option>
+        <option value="psi">psi</option>
+      </select>
+
+      <label>Isentropic efficiency</label>
+      <input
+        class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+        id="input-efficiency"
+      />
+      <select
+        class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+        id="unit-efficiency"
+        value="0"
+        type="number"
+      >
+        <option value="1">%</option>
+        <option value="0.01">Fraction</option>
+      </select>
+
+      <label>Power</label>
+      <input
+        class="w-full bg-orange-300 rounded-md border-orange-400 border-solid border-2"
+        readonly
+        id="input-power"
+      />
+      <select
+        class="w-full bg-slate-500 rounded-md text-white border-white border-solid border-2"
+        id="unit-power"
+      >
+        <option value="W">W</option>
+        <option value="kW">KW</option>
+        <option value="hp">HP</option>
+      </select>
+      <button class="col-span-3" id="power-button">Calculate</button>
+    </div>
+    <table
+      id="table"
+      class="border-white border-solid border px-4 py-2 text-white mt-5 overflow-x-auto"
+    >
+      <thead class="bg-orange-700">
+        <tr>
+          <td class="border-white border-solid border px-4 py-2">#</td>
+
+          <td class="border-white border-solid border px-4 py-2">Power</td>
+        </tr>
+      </thead>
+      <tbody id="tbody" class="bg-white px-4 py-2"></tbody>
+      <tfoot id="tfoot">
+        <tr id="percentages">
+          <td class="border-white border-solid border px-4 py-2 bg-orange-700">
+            %
+          </td>
+          <td
+            id="powerPercentage"
+            class="border-white border-solid border px-4 py-2 bg-orange-700"
+          ></td>
+        </tr>
+      </tfoot>
+    </table>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
